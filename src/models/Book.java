@@ -24,5 +24,27 @@ public class Book {
 		this.numPages = numPages;
 		
 	}
+	
+	// Getters
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public int getNumPages() {
+		return numPages;
+	}
+
 }
 
