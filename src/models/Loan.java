@@ -32,8 +32,4 @@ public class Loan {
 		return this.borrowerUser;
 	}
 	
-	
-	
-	
-	
 }
