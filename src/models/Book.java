@@ -1,15 +1,16 @@
 package models;
+import models.enums.BookGenre;
 
 public class Book {
 	private String isbn;
 	private String title;
 	private Author author;
-	private String genre;
+	private BookGenre genre;
 	private int numPages;
 	
 	// Contructor
 	public Book (String isbn, String title, Author author,
-			String genre, int numPages) {
+			BookGenre genre, int numPages) {
 		
 		// Validate ISBN using a regular expression
 		if (isbn.matches("^(97[89])\\d{10}$")) {
@@ -38,7 +39,7 @@ public class Book {
 		return author;
 	}
 
-	public String getGenre() {
+	public BookGenre getGenre() {
 		return genre;
 	}
 

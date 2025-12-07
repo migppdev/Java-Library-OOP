@@ -8,51 +8,46 @@ import exception.BookAlreadyExistsException;
 import exception.BookNotFoundException;
 
 public class Library {
-	private Map<Book, Integer> bookList = new HashMap<>();
-	
-	public void addBook(Book newBook, int units) throws BookAlreadyExistsException{
-		// If book already exists in the library, throw exception
-		if (bookList.containsKey(newBook)) {
-			throw new BookAlreadyExistsException(newBook.getTitle() + " already exists in the library");
-		}
-		// Add book to library
-		bookList.put(newBook, units);
-	}	
+	// Map to store books and its ISBN <ISBN, Book>
+	private Map<String, Book> bookMap = new HashMap<>();
+    // Map to store units available, <ISBN, units>
+	private Map<String, Integer> bookUnits = new HashMap<>();
 
-	public void deleteBook(String isbn) throws BookNotFoundException{ 
-		// Iterate over bookList
-		for (Book book : bookList.keySet()) {
-			// If a book with the ISBN exists, remove it
-			if (book.getIsbn() == isbn) {
-				bookList.remove(book);
-				return;
-			}
-		}
-		// return false if the book was not found
-		throw new BookNotFoundException("The book with ISBN" + isbn + " was not found");
-	}
-	
-	public Book getBookByISBN(String isbn) throws BookNotFoundException{
-		for (Book book : bookList.keySet()) {
-			if (book.getIsbn().equals(isbn)) {
-				return book;
-			}
-		}
-		throw new BookNotFoundException("Book is not in the library");
-	}
-	
-	public List<Book> getBooksByAuthor(Author author) {
-		List<Book> foundBooks = new ArrayList<>();
-		
-		for (Book book : bookList.keySet()) {
-			if (book.getAuthor().getId() == author.getId()) {
-				foundBooks.add(book);
-			}
-		}
-		
-		return foundBooks;
-		
-	}
+    public void addBook(Book newBook, int units) throws BookAlreadyExistsException {
+        String isbn = newBook.getIsbn();
+        if (bookMap.containsKey(isbn)) {
+            throw new BookAlreadyExistsException(newBook.getTitle() + " already exists in the library");
+        }
+        bookMap.put(isbn, newBook);
+        bookUnits.put(isbn, units);
+    }
+
+    public void deleteBook(String isbn) throws BookNotFoundException {
+        if (!bookMap.containsKey(isbn)) {
+            throw new BookNotFoundException("The book with ISBN " + isbn + " was not found");
+        }
+        bookMap.remove(isbn);
+        bookUnits.remove(isbn);
+    }
+
+    public Book getBookByISBN(String isbn) throws BookNotFoundException {
+        Book book = bookMap.get(isbn);
+        if (book == null) {
+            throw new BookNotFoundException("Book is not in the library");
+        }
+        return book;
+    }
+
+    public List<Book> getBooksByAuthor(Author author) {
+        List<Book> foundBooks = new ArrayList<>();
+        for (Book book : bookMap.values()) {
+            if (book.getAuthor().getId() == author.getId()) {
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
+    }
 }
+
 
  

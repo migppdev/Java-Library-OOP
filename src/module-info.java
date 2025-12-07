@@ -4,6 +4,6 @@
 /**
  * 
  */
-module Biblioteca {
-	
+module Library {
+	requires java.desktop;
 }
