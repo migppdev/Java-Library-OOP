@@ -15,6 +15,8 @@ public class Loan {
 		this.expectedReturn = expectedReturn;
 	}
 
+	
+	
 	// Getters
 	public LocalDate getDateBorrow() {
 		return this.dateOfBorrow;
@@ -31,5 +33,6 @@ public class Loan {
 	public User getBorrower() {
 		return this.borrowerUser;
 	}
+	
 	
 }
