@@ -18,7 +18,7 @@ public class Main {
 			library.addBook(book1, 5);
 			library.addBook(book2, 5);
 		} catch (BookAlreadyExistsException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}
 		System.out.println(book1.getAuthor().getFullName());
 		for (Book book : library.getBooksByAuthor(orwell)) {
