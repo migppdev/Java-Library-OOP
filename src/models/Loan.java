@@ -2,6 +2,8 @@ package models;
 import java.time.LocalDate;
 
 public class Loan {
+	private static int idCounter;;
+	private final int id;
 	private Book borrowedBook;
 	private User borrowerUser;
 	private LocalDate dateOfBorrow;
@@ -9,14 +11,13 @@ public class Loan {
 	// Constructor
 	public Loan(Book borrowedBook, User borrowerUser,
 			LocalDate dateofBorrow, LocalDate expectedReturn) {
+		this.id = ++idCounter;
 		this.borrowedBook = borrowedBook;
 		this.borrowerUser = borrowerUser;
 		this.dateOfBorrow = dateofBorrow;
 		this.expectedReturn = expectedReturn;
 	}
 
-	
-	
 	// Getters
 	public LocalDate getDateBorrow() {
 		return this.dateOfBorrow;
