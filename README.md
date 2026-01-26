@@ -1,18 +1,18 @@
-# Gestor de Librería CLI 
+# Library Management CLI
 
-Una aplicación de consola (CLI) para gestionar libros en una librería, desarrollada con **Java** y siguiendo principios de **programación orientada a objetos (OOP)**. La aplicación utiliza **SQLite** como base de datos para almacenar información de libros, géneros y autores.
-
----
-
-## 🗂 Estructura de la base de datos
-### Diagrama E-R
-![Diagrama E-R](resources/diagrama_e-r.png)  
+A console-based application (CLI) for managing books in a library, developed with **Java** and following **Object-Oriented Programming (OOP)** principles. The application uses **SQLite** as the database to store information.
 
 ---
 
-## 🛠 Tecnologías usadas
+## 🗂 Database Structure
+### E-R Diagram
+![E-R Diagram](resources/diagrama_e-r.png)  
 
-- **Lenguaje:** Java (OOP)  
-- **Base de datos:** SQLite  
-- **Herramientas:** JDBC para la conexión con SQLite  
-- **Entorno de desarrollo:** Eclipse IDE
+---
+
+## 🛠 Technologies Used
+
+- **Language:** Java (OOP)  
+- **Database:** SQLite  
+- **Tools:** JDBC for SQLite connection  
+- **Development Environment:** Eclipse IDE
