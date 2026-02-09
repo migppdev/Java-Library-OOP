@@ -6,11 +6,14 @@ import java.sql.Statement;
 
 public class InitializeDB {
 
-	/*
 	public static void createTables() {
-		System.out.println("");
+		executeSQL(getAuthorsTableSQL());
+		executeSQL(getBooksTableSQL());
+		executeSQL(getGenresTableSQL());
+		executeSQL(getLoansTableSQL());
+		executeSQL(getUsersTableSQL());
 	}
-	*/
+
 	
 	private static void executeSQL(String sql) {
 		try {
@@ -23,39 +26,57 @@ public class InitializeDB {
 	}
 	
 	private static String getAuthorsTableSQL() {
-		String authorsTable = "CREATE TABLE IF NOT EXISTS authors ("
-				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+		String sql = "CREATE TABLE IF NOT EXISTS authors ("
+				+ "book_id INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "name TEXT NOT NULL,"
-				+ "lastName TEXT NOT NULL,"
-				+ "birthDate DATE NOT NULL,"
-				+ "dateDeath DATE";	
+				+ "last_name TEXT NOT NULL,"
+				+ "birth_date DATE NOT NULL,"
+				+ "date_death DATE";	
 		
-		return authorsTable;
+		return sql;
 		
 	}
 	
 	private static String getGenresTableSQL() {
 		
-		String bookGenres = "CREATE TABLE IF NOT EXISTS book_genres ("
-				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+		String sql = "CREATE TABLE IF NOT EXISTS book_genres ("
+				+ "genre_id INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ "genre TEXT NOT NULL";
 		
-		return bookGenres;
+		return sql;
 		
 	}
 
 
 	private static String getBooksTableSQL() {
-		String booksTable = "CREATE TABLE IF NOT EXISTS books ("
+		String sql = "CREATE TABLE IF NOT EXISTS books ("
 				+ "isbn TEXT PRIMARY KEY,"
 				+ "title TEXT NOT NULL,"
 				+ "author_id INTEGER REFERENCES authors(id) NOT NULL,"
 				+ "genre_id INTEGER REFERENCES book_genres(id) NOT NULL,"
 				+ "num_pages INTEGER NOT NULL";	
 		
-		return booksTable;
+		return sql;
+	}
+
+
+	private static String getUsersTableSQL() {
+		String sql = "CREATE TABLE IF NOT EXISTS users("
+				+ "user_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "name TEXT NOT NULL,"
+				+ "last_name TEXT"
+				+ "age INTEGER NOT NULL";
+		return sql;
 	}
 	
+	private static String getLoansTableSQL() {
+		String sql = "CREATE TABLE IF NOT EXISTS loans ("
+				+ "loan_id TEXT PRIMARY KEY,"
+				+ "borrowed_book INTEGER REFERENCES books(isbn) NOT NULL,"
+				+ "borrower_user INTEGER REFERENCES users(user_id) NOT NULL,"
+				+ "borrow_date DATE NOT NULL"
+				+ "expected_return DATE NOT NULL";	
 		
-	
+		return sql;
+	}
 }
