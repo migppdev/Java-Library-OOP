@@ -49,8 +49,10 @@ public class InitializeDB {
 
 
 	private static String getBooksTableSQL() {
+		// Update e-r diagram (id)
 		String sql = "CREATE TABLE IF NOT EXISTS books ("
-				+ "isbn TEXT PRIMARY KEY,"
+				+ "book_id INTEGER PRIMARY KEY AUTOINCREMENT"
+				+ "isbn TEXT NOT NULL,"
 				+ "title TEXT NOT NULL,"
 				+ "author_id INTEGER REFERENCES authors(id) NOT NULL,"
 				+ "genre_id INTEGER REFERENCES book_genres(id) NOT NULL,"
